@@ -13,7 +13,8 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        //
+        $title = "Coming Soon";
+        return view('layout.coming-soon',compact('title'));
     }
 
     /**

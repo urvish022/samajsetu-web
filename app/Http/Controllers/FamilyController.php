@@ -2,29 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\MatrimonyDetail;
-use App\Models\VillageSetting;
+use App\Models\FamilyDetail;
+use App\Models\MemberDetail;
 use Illuminate\Http\Request;
 
-class MatrimonyController extends Controller
+class FamilyController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $queryParams = $request->query();
-        $filter = $request->input('filter');
-        $filter['type'] = $queryParams['type'] ?? 'male';
-
-        $matrimonyData = MatrimonyDetail::with('village')->where('gender',$filter['type'])->where('approval_flag',1)->where('met_active_flag',1)->orderBy('matrimony_id','DESC')->paginate(30);
-
-        $title = __('dashboard.title');
-
-        $matrimonyData->appends($filter);
-        return view('pages.matrimony.index', compact('title','matrimonyData','filter'));
+        //
     }
 
     /**
@@ -34,10 +25,7 @@ class MatrimonyController extends Controller
      */
     public function create()
     {
-        $villages = VillageSetting::get();
-        $title = __('dashboard.title');
-
-        return view('pages.matrimony.create',compact('title','villages'));
+        //
     }
 
     /**
@@ -59,10 +47,13 @@ class MatrimonyController extends Controller
      */
     public function show($id)
     {
-        $data = MatrimonyDetail::with(['country','village'])->find($id);
         $title = __('dashboard.title');
+        $member = MemberDetail::find($id);
+        
+        $details = FamilyDetail::with(['relation','village'])->where('approval_flag',1)->where('fd_active_flag',1)->where('member_id',$id)->orderBy('fbirth_date','ASC')->get();
 
-        return view('pages.matrimony.show',compact('data','title'));
+
+        return view('pages.family.show',compact('details','title','member'));
     }
 
     /**

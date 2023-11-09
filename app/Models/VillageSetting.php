@@ -10,4 +10,9 @@ class VillageSetting extends Model
     use HasFactory;
 
     protected $table = 'village_setting';
+
+    public function members()
+    {
+        return $this->hasMany(MemberDetail::class,'village_id','village_id');
+    }
 }

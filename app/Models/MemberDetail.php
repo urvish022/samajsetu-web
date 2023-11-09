@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -47,6 +48,26 @@ class MemberDetail extends Model
     public function getDates()
     {
         return ['birth_date'];
+    }
+
+    public function village()
+    {
+        return $this->hasOne(VillageSetting::class,'village_id','village_id');
+    }
+
+    public function getBirthDateAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
+    }
+
+    public function family()
+    {
+        return $this->hasMany(FamilyDetail::class,'member_id','member_id');
+    }
+
+    public function country()
+    {
+        return $this->hasOne(CountryDetail::class,'country_id','country_id');
     }
 
 }

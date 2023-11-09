@@ -7,6 +7,7 @@ use App\Http\Controllers\BusinessController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EventsController;
+use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\GalleryController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MatrimonyController;
@@ -60,5 +61,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('transactions',TransactionsController::class);
 
     Route::resource('profile',ProfileController::class);
+
+    Route::resource('family',FamilyController::class);
 
 });

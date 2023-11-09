@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BusinessDirectory;
 use Illuminate\Http\Request;
 
 class BusinessController extends Controller
@@ -13,7 +14,9 @@ class BusinessController extends Controller
      */
     public function index()
     {
-        //
+        $title = __('dashboard.title');
+        $business = BusinessDirectory::with('category')->where('approval_flag',1)->where('bd_active_flag',1)->where('payment_status','TXN_SUCCESS')->get();
+        return view('pages.business.index',compact('title','business'));
     }
 
     /**
@@ -45,7 +48,10 @@ class BusinessController extends Controller
      */
     public function show($id)
     {
-        //
+        $title = __('dashboard.title');
+        $business = BusinessDirectory::with('category')->find($id);
+        
+        return view('pages.business.show',compact('title','business'));
     }
 
     /**
