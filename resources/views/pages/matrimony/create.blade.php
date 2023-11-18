@@ -50,7 +50,9 @@
 
                                 <div class="col-lg-8">
                                     <div class="symbol symbol-100px bg-">
-
+                                        <input type="file" id="upload_image">
+                                        <div id="uploaded_image"></div>
+                                        <button id="crop_image">Crop & Upload Image</button>
                                     </div>
                                 </div>
                             </div>
@@ -366,8 +368,59 @@
 
 @push('script')
 <script>
+$(document).ready(function() {
+    var croppie_instance = $('#uploaded_image').croppie({
+        viewport: {
+            width: 200,
+            height: 200,
+            type: 'square' // square shape will ensure 1:1 aspect ratio
+        },
+        boundary: {
+            width: 300,
+            height: 300
+        }
+    });
+
+    $('#uploaded_image').change(function() {
+        var reader = new FileReader();
+
+        reader.onload = function(event) {
+            croppie_instance.croppie('bind', {
+                url: event.target.result
+            }).then(function() {
+                console.log('Image successfully loaded.');
+            });
+        }
+
+        reader.readAsDataURL(this.files[0]);
+    });
+
+    $('#crop_image').click(function(event) {
+       croppie_instance.croppie('result', {
+           type: 'canvas',
+           size: 'viewport'
+       }).then(function(response) {
+           $.ajax({
+               url: "/path/to/your/laravel/route",
+               type: "POST",
+               data: {"image": response},
+               success: function(data) {
+                   // handle success
+               },
+               error: function(data) {
+                   // handle error
+               }
+           });
+       });
+   });
+
+});
+
+
     $(document).ready(function() {
         // $("#kt_datepicker_1").flatpickr();
+
+        
     });
 </script>
 @endpush
