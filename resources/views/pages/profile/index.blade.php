@@ -209,7 +209,7 @@
                 </div>
 
                 <div id="matrimony" class="card-body p-0 tab-pane fade" role="tabpanel">
-                <div class="justify-content-end">
+                    <div class="justify-content-end">
                         <a href="{{route('matrimony.create')}}" class="btn btn-primary">
                             <i class="ki-duotone ki-plus fs-2"></i> Add Biodata
                         </a>
@@ -266,12 +266,56 @@
                     </div>
                 </div>
 
-                <div id="memorial" class="card-body p-0 tab-pane fade" role="tabpanel">
-                    @include('layout.empty',['count'=>$memorial->count()])
-                </div>
-
                 <div id="business" class="card-body p-0 tab-pane fade" role="tabpanel">
                     @include('layout.empty',['count'=>$business->count()])
+                </div>
+
+                <div id="memorial" class="card-body p-0 tab-pane fade" role="tabpanel">
+                    <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
+                        <!--begin::Table head-->
+                        <thead>
+                            <tr class="fs-7 fw-bold text-gray-500 border-bottom-0">
+                                <th class="p-0 min-w-200px"></th>
+                                <th class="p-0 min-w-150px"></th>
+                                <th class="p-0 min-w-125px"></th>
+                                <th class="p-0 min-w-125px"></th>
+                                <th class="p-0 w-100px"></th>
+                            </tr>
+                        </thead>
+                        <!--end::Table head-->
+
+                        <!--begin::Table body-->
+                        <tbody>
+                            @foreach ($memorial as $detail)
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="symbol symbol-symbol-40px me-3">
+                                            <img src="{{config('url.user')}}{{$detail->photo}}" class="" alt="" />
+                                        </div>
+
+                                        <div class="d-flex justify-content-start flex-column">
+                                            <span class="text-gray-800 fw-bold mb-1 fs-3">{{$detail->full_name_eng}}</span>
+                                        </div>
+                                    </div>
+                                </td>
+
+                                <td class="text-end">
+                                    <span class="text-gray-800 fw-bold d-block mb-1 fs-6">{{$detail->dead_date}}</span>
+                                    <span class="fw-semibold text-gray-400 d-block">Death Date</span>
+                                </td>
+
+                                <td class="text-end">
+                                    <button type="button" class="btn btn-sm btn-icon btn-light btn-active-light-primary toggle h-25px w-25px" data-kt-table-widget-4="expand_row">
+                                    <i class="ki-duotone ki-plus fs-4 m-0 toggle-off"></i> <i class="ki-duotone ki-minus fs-4 m-0 toggle-on"></i> </button>
+                                </td>
+                            </tr>
+                            @endforeach
+
+                        </tbody>
+                        <!--end::Table body-->
+                    </table>
+                    @include('layout.empty',['count'=>$memorial->count()])
                 </div>
 
                 <div id="settings" class="card-body p-0 tab-pane fade" role="tabpanel">

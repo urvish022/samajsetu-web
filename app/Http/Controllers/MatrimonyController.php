@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\MatrimonyRequest;
 use App\Http\Requests\StoreMatrimonyData;
+use App\Jobs\UploadImageQueueJob;
 use App\Models\MatrimonyDetail;
 use App\Models\VillageSetting;
+use App\Traits\ImageTrait;
+use App\Traits\UtilTrait;
+use Exception;
 use Illuminate\Http\Request;
 
 class MatrimonyController extends Controller
 {
+    use ImageTrait, UtilTrait;
     /**
      * Display a listing of the resource.
      *
@@ -48,9 +52,35 @@ class MatrimonyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(MatrimonyRequest $request)
+    public function store(StoreMatrimonyData $request)
     {
-        //
+        try{
+            $input = $request->all();
+            
+            $result = $this->translate_text($request->full_name_eng);
+            $input['full_name_guj'] = isset($result['responseData']['translatedText']) ? $result['responseData']['translatedText'] : "";
+            unset($input['photo']);
+
+            $uploadAPIURL = env('UPLOAD_IMAGE_API_URL');
+            $input['photo'] = $this->base64ToImage($request->crop_photo,'matrimony');
+            $input['member_id'] = auth()->user()->member_id;
+            $input['weight'] = $input['weight']. "Kg";
+            $input['height'] = $input['height']. "Ft";
+            
+            //upload image to api server
+            UploadImageQueueJob::dispatch($uploadAPIURL,$input['photo'],'matrimony');
+
+            $status = MatrimonyDetail::create($input);
+            if($status){
+                return response()->json(['status'=>true,'message'=>'Your matrimony profile saved successfully. Admin will verify your matrimony profile.']);
+            } else {
+                return response()->json(['status'=>false,'message'=>'Data not saved!']);
+            }
+        } catch (Exception $e){
+
+            return response()->json(['status'=>false,'message'=>'Something went wrong!','data'=>$e->getMessage()]);
+        }
+        
     }
 
     /**

@@ -290,7 +290,6 @@
 					success: function(response) {
 						$("#toast_area").show();
 						
-
 						if(response.status){
 							$('#register_form input[type="text"], #register_form input[type="email"], #register_form input[type="date"]').val('');
 							$('#register_form input[type="text"], #register_form input[type="email"], #register_form input[type="date"]').removeClass('is-valid');

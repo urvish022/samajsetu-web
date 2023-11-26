@@ -40,5 +40,7 @@ class SendMemberEmailJob implements ShouldQueue
     {
         $password = $this->my_simple_crypt($this->memberDetail->password,'d');
         Mail::to($this->memberDetail->user_name)->send(new SendLoginInfoMail($this->memberDetail->full_name_eng, $password, $this->memberDetail->user_name));
+        Log::info("inside job");
+        Log::info($this->memberDetail->user_name." : ". $password);
     }
 }

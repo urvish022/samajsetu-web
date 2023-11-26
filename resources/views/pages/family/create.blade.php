@@ -6,19 +6,19 @@
         <div id="kt_app_toolbar_container" class="app-container container-xxl d-flex flex-stack">
             <div class="page-title d-flex flex-column justify-content-center me-3 mb-4 mb-lg-0">
                 <h1 class="page-heading d-flex text-dark fw-bold fs-3 flex-column justify-content-center my-0">
-                    Biodata
+                    Family Member
                 </h1>
                 <ul class="breadcrumb breadcrumb-separatorless fw-semibold fs-7 my-0 pt-1">
                     <li class="breadcrumb-item text-muted">
-                        <a href="{{route('matrimony.index')}}" class="text-muted text-hover-primary">
-                            Matrimony
+                        <a href="{{route('profile.index')}}" class="text-muted text-hover-primary">
+                            Profile
                         </a>
                     </li>
 
                     <li class="breadcrumb-item">
                         <span class="bullet bg-gray-400 w-5px h-2px"></span>
                     </li>
-                    <li class="breadcrumb-item text-muted">Add Biodata</li>
+                    <li class="breadcrumb-item text-muted">Add Family Member</li>
                 </ul>
             </div>
 
@@ -34,7 +34,7 @@
                 <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_profile_details" aria-expanded="true" aria-controls="kt_account_profile_details">
                     <!--begin::Card title-->
                     <div class="card-title m-0">
-                        <h3 class="fw-bold m-0">Biodata Details</h3>
+                        <h3 class="fw-bold m-0">Family Details</h3>
                     </div>
                     <!--end::Card title-->
                 </div>
@@ -66,7 +66,7 @@
                             <!--end::Close-->
                         </div>
 
-                        <form id="matrimony_form" class="form" novalidate="novalidate">
+                        <form id="member_form" class="form" novalidate="novalidate">
 
                             <input type="hidden" id="crop_photo" name="crop_photo">
                             <div class="row mb-6">
@@ -75,7 +75,7 @@
 
                                 <div class="col-lg-8">
                                     <div class="symbol symbol-100px bg-">
-                                        <input type="file" id="fileInput" name="photo" accept=".png, .jpg, .jpeg">
+                                        <input type="file" id="fileInput" name="fphoto" accept=".png, .jpg, .jpeg">
                                     </div>
                                 </div>
                             </div>
@@ -88,9 +88,25 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="full_name_eng" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter full name" />
+                                            <input name="ffull_name_eng" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter full name" />
                                         </div>
                                     </div>
+                                </div>
+                            </div>
+
+                            <div class="row mb-6">
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                    <span class="required">Relation with Main Member</span>
+                                </label>
+
+                                <div class="col-lg-8 fv-row">
+                                    <select name="relation_id" aria-label="Select a Relation" data-control="select2" data-placeholder="Select a relation" class="form-select form-select form-select-lg fw-semibold">
+                                        <option value="">Select a Relation...</option>
+                                        @foreach ($relations as $relation)
+                                        <option value="{{$relation->relation_id}}">{{$relation->relation_name_eng}}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
                             </div>
 
@@ -139,7 +155,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="education" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your education" />
+                                            <input name="feducation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your education" />
                                         </div>
                                     </div>
                                 </div>
@@ -153,35 +169,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your occupation" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Income</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="income" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your annual income" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Father Mobile Number</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="father_mobile" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your father mobile number" />
+                                            <input name="foccupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your occupation" />
                                         </div>
                                     </div>
                                 </div>
@@ -195,35 +183,42 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mobile_no" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mobile number" />
+                                            <input name="fmobile_no" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mobile number" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Sakh</span>
+                                <!--begin::Label-->
+                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                    <span class="">Blood Group</span>
                                 </label>
 
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your sakh" />
-                                        </div>
-                                    </div>
+                                <div class="col-lg-8 fv-row">
+                                <select name="fblood_grp" id="blood_grp" aria-label="Select a Blood Group" data-control="select2" data-placeholder="Select a Blood Group" class="form-select form-select form-select-lg fw-semibold">
+                                    <option value="">Select a Blood Group...</option>
+                                    <option value="A+">A+</option>
+                                    <option value="A-">A-</option>
+                                    <option value="B+">B+</option>
+                                    <option value="B-">B-</option>
+                                    <option value="O+">O+</option>
+                                    <option value="O-">O-</option>
+                                    <option value="AB+">AB+</option>
+                                    <option value="AB-">AB-</option>
+                                </select>
                                 </div>
                             </div>
 
                             <div class="row mb-6">
                                 <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Mosad Sakh</span>
+                                    <span class="required">City Name</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mosad_sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mosad sakh" />
+                                            <input name="fcity_name" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter city name" />
                                         </div>
                                     </div>
                                 </div>
@@ -237,7 +232,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mosad" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mosad" />
+                                            <input name="fmosad" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mosad" />
                                         </div>
                                     </div>
                                 </div>
@@ -245,13 +240,13 @@
 
                             <div class="row mb-6">
                                 <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Mother Name</span>
+                                    <span class="required">Piyar</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mother_name" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mother name" />
+                                            <input name="fpiyar" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your piyar" />
                                         </div>
                                     </div>
                                 </div>
@@ -265,35 +260,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="birth_date" type="date" class="form-control form-control-lg form-control mb-3 mb-lg-0" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Height</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="height" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your height" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Weight</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="weight" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your weight" />
+                                            <input name="fbirth_date" type="date" class="form-control form-control-lg form-control mb-3 mb-lg-0" />
                                         </div>
                                     </div>
                                 </div>
@@ -307,9 +274,10 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <select name="maritual_status" aria-label="Select a maritual status" data-control="select2" data-placeholder="Select a maritual status" class="form-select form-select form-select-lg fw-semibold">
+                                            <select name="fmarried_status" aria-label="Select a maritual status" data-control="select2" data-placeholder="Select a maritual status" class="form-select form-select form-select-lg fw-semibold">
                                                 <option value="">Select</option>
                                                 <option value="single">Single</option>
+                                                <option value="married">Married</option>
                                                 <option value="divorced">Divorced</option>
                                             </select>
                                         </div>
@@ -319,59 +287,13 @@
 
                             <div class="row mb-6">
                                 <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Gender</span>
+                                    <span class="required">Occupation</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <select name="gender" aria-label="Select gender" data-control="select2" data-placeholder="Select a gender" class="form-select form-select form-select-lg fw-semibold">
-                                                <option value="">Select</option>
-                                                <option value="Male">Male</option>
-                                                <option value="Female">Female</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Land</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="land" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter Land" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Father Occupation</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="father_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter father occupation" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Mother Occupation</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="mother_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter mother occupation" />
+                                            <input name="foccupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter father occupation" />
                                         </div>
                                     </div>
                                 </div>
@@ -379,27 +301,13 @@
 
                             <div class="row mb-6">
                                 <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                    <span class="required">Brother</span>
+                                    <span class="">Email</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="brother" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many brother?" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span class="required">Sister</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input name="sister" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many sister?" />
+                                            <input name="femail_id" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your email" />
                                         </div>
                                     </div>
                                 </div>
@@ -407,27 +315,13 @@
 
                             <div class="row mb-6">
                                 <label class="col-lg-4 col-form-label fw-semibold fs-6">
-                                    <span class="required">Address</span>
+                                    <span class="">Business Address</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="address" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your home address" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6">
-                                    <span>Extra Details / Expectation</span>
-                                </label>
-
-                                <div class="col-lg-8">
-                                    <div class="row">
-                                        <div class="col-lg-12 fv-row">
-                                            <input type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" name="extra_details" placeholder="Enter extra details" />
+                                            <input name="fbussiness_address" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter business address" />
                                         </div>
                                     </div>
                                 </div>
@@ -465,7 +359,7 @@
 </div>
 @endpush
 @push('script')
-{!! JsValidator::formRequest('App\Http\Requests\StoreMatrimonyData','#matrimony_form') !!}
+{!! JsValidator::formRequest('App\Http\Requests\StoreFamilyMemberRequest','#member_form') !!}
 <script>
     var cropImage = '';
     $(function() {
@@ -524,13 +418,10 @@
     });
 
     $("#save_btn").click(function() {
-        if ($("#matrimony_form").valid()) {
-            var formData = new FormData($("#matrimony_form")[0]);
+        if ($("#member_form").valid()) {
+            var formData = new FormData($("#member_form")[0]);
             $.ajax({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                },
-                url: "{{route('matrimony.store')}}",
+                url: "{{route('family.store')}}",
                 type: 'POST',
                 data: formData,
                 processData: false, // Important!
@@ -539,10 +430,10 @@
                     $("#toast_area").show();
 						
 						if(response.status){
-							$('#matrimony_form input[type="text"], #matrimony_form input[type="email"], #matrimony_form input[type="date"]').val('');
-							$('#matrimony_form input[type="text"], #matrimony_form input[type="email"], #matrimony_form input[type="date"]').removeClass('is-valid');
+							$('#member_form input[type="text"], #member_form input[type="email"], #member_form input[type="date"]').val('');
+							$('#member_form input[type="text"], #member_form input[type="email"], #member_form input[type="date"]').removeClass('is-valid');
 
-							$('#matrimony_form')[0].reset();
+							$('#member_form')[0].reset();
                             
 							$("#country_id").val('').trigger('change');
 							$("#village_id").val('').trigger('change');
