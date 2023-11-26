@@ -9,6 +9,7 @@
         "benwilkins/laravel-fcm-notification": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
+        "jdavidbakr/mail-tracker": "^5.0",
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.11",
         "laravel/telescope": "^4.9",

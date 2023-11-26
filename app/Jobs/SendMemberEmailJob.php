@@ -55,6 +55,5 @@ class SendMemberEmailJob implements ShouldQueue
         // Mail::to($this->memberDetail->user_name)->send(new SendLoginInfoMail($this->memberDetail->full_name_eng, $password, $this->memberDetail->user_name));
         Log::info("inside job");
         Log::info($this->memberDetail->user_name." : ". $password);
-        Log::info($status);
     }
 }
