@@ -44,7 +44,6 @@ class SendMemberUsernamePassword extends Command
         foreach ($memberDetails as $memberDetail) {
             // Dispatch the email job to the database queue connection
             dispatch((new SendMemberEmailJob($memberDetail))->onConnection('database'));
-            exit;
         }
 
         $this->info('Emails dispatched successfully!');
