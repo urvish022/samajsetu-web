@@ -23,4 +23,25 @@ trait UtilTrait {
     
         return $output;
     }
+
+    public function translate_text($text)
+    {
+        $url = 'https://api.mymemory.translated.net/get?';
+        $ch = curl_init($url);
+
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "q=".$text."&langpair=en|gu&de=urvish31797@gmail.com");
+
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_CONNECTTIMEOUT,10);
+        curl_setopt($ch, CURLOPT_TIMEOUT,10);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+
+        $response = curl_exec($ch);
+        $responseDecoded = json_decode($response, true);
+
+        curl_close($ch);
+        return $responseDecoded;
+    }
 }

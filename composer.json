@@ -6,12 +6,15 @@
     "license": "MIT",
     "require": {
         "php": "^7.3|^8.0",
+        "benwilkins/laravel-fcm-notification": "^4.0",
         "fruitcake/laravel-cors": "^2.0",
         "guzzlehttp/guzzle": "^7.0.1",
         "laravel/framework": "^8.0",
         "laravel/sanctum": "^2.11",
+        "laravel/telescope": "^4.17",
         "laravel/tinker": "^2.5",
-        "opcodesio/log-viewer": "^3.1"
+        "opcodesio/log-viewer": "^3.1",
+        "proengsoft/laravel-jsvalidation": "^4.7"
     },
     "require-dev": {
         "facade/ignition": "^2.5",

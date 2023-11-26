@@ -5,10 +5,12 @@ namespace App\Models;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Notifications\Notifiable;
 
 class MemberDetail extends Model
 {
     use HasFactory;
+    use Notifiable;
 
     protected $table = 'member_details';
     protected $primaryKey = 'member_id';
@@ -68,6 +70,11 @@ class MemberDetail extends Model
     public function country()
     {
         return $this->hasOne(CountryDetail::class,'country_id','country_id');
+    }
+
+    public function fcm()
+    {
+        return $this->hasMany(FcmDetail::class,'member_id','member_id');
     }
 
 }

@@ -30,8 +30,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::get('login', [AuthController::class, 'index'])->name('login');
+Route::get('register', [AuthController::class, 'register'])->name('register');
 Route::post('login-ajax', [AuthController::class, 'login'])->name('login.ajax');
+Route::post('register-ajax', [AuthController::class, 'register_ajax'])->name('register.ajax');
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('forgot-password',[AuthController::class,'forgotPassword'])->name('forgot-password');
+Route::get('check',[AuthController::class,'check']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
