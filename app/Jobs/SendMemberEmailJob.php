@@ -51,8 +51,10 @@ class SendMemberEmailJob implements ShouldQueue
             ->replyTo("info@samajsetu.com")
             ->from(env('MAIL_FROM_ADDRESS'),env('MAIL_FROM_NAME'));
         });
+
         // Mail::to($this->memberDetail->user_name)->send(new SendLoginInfoMail($this->memberDetail->full_name_eng, $password, $this->memberDetail->user_name));
         Log::info("inside job");
         Log::info($this->memberDetail->user_name." : ". $password);
+        Log::info($status);
     }
 }
