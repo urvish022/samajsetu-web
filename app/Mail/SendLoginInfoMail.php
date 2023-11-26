@@ -8,9 +8,9 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use App\Models\MemberDetail;
 
-class SendLoginInfoMail extends Mailable
+class SendLoginInfoMail extends Mailable 
 {
-    use Queueable, SerializesModels;
+    use SerializesModels;
     public $full_name_eng, $password, $user_name;
 
     public function __construct($full_name_eng, $password, $user_name)
