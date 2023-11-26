@@ -9,6 +9,7 @@ use App\Http\Controllers\DirectoryController;
 use App\Http\Controllers\EventsController;
 use App\Http\Controllers\FamilyController;
 use App\Http\Controllers\GalleryController;
+use App\Http\Controllers\GeneralController;
 use App\Http\Controllers\HistoryController;
 use App\Http\Controllers\MatrimonyController;
 use App\Http\Controllers\MemorialController;
@@ -67,5 +68,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('profile',ProfileController::class);
 
     Route::resource('family',FamilyController::class);
+
+    Route::get('app-info',[GeneralController::class,'appInfo'])->name('app.app-info');
 
 });

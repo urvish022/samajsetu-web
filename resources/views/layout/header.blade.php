@@ -185,6 +185,11 @@
                 </div>
                 <!--end:Menu sub-->
             </div>
+            <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" class="@if(\Request::route()->getName() == 'app.app-info') here @endif menu-item menu-lg-down-accordion me-0 me-lg-2">
+                <a href="{{route('app.app-info')}}" class="menu-link">
+                    <span class="menu-title">Samajsetu App Info</span>
+                </a>
+            </div>
             <div data-kt-menu-trigger="{default: 'click', lg: 'hover'}" class="@if(\Request::route()->getName() == 'profile.index') here @endif menu-item menu-lg-down-accordion me-0 me-lg-2">
                 <a href="{{route('profile.index')}}" class="menu-link">
                     <span class="menu-title">My Profile</span>

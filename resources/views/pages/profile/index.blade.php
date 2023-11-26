@@ -63,6 +63,12 @@
             <div class="tab-content">
 
                 <div id="members" class="card-body p-0 tab-pane fade show active" role="tabpanel">
+                    <div class="justify-content-end">
+                        <a href="{{route('family.create')}}" class="btn btn-primary">
+                            <i class="ki-duotone ki-plus fs-2"></i> Add Family Member
+                        </a>
+                    </div>
+                    <br>
                     <div class="table-responsive">
                         <!--begin::Table-->
                         <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
@@ -199,9 +205,16 @@
                             <!--end::Table body-->
                         </table>
                     </div>
+
                 </div>
 
-                <div id="matrimony" class="card-body p-0 tab-pane fade show active" role="tabpanel">
+                <div id="matrimony" class="card-body p-0 tab-pane fade" role="tabpanel">
+                <div class="justify-content-end">
+                        <a href="{{route('matrimony.create')}}" class="btn btn-primary">
+                            <i class="ki-duotone ki-plus fs-2"></i> Add Biodata
+                        </a>
+                    </div>
+                    <br>
                     <div class="table-responsive">
                         <!--begin::Table-->
                         <table class="table table-row-dashed align-middle gs-0 gy-4 my-0">
@@ -248,23 +261,23 @@
                             </tbody>
                             <!--end::Table body-->
                         </table>
+                        @include('layout.empty',['count'=>$matrimony->count()])
+
                     </div>
                 </div>
 
-                <div id="memorial" class="card-body p-0 tab-pane fade show active" role="tabpanel">
-
+                <div id="memorial" class="card-body p-0 tab-pane fade" role="tabpanel">
+                    @include('layout.empty',['count'=>$memorial->count()])
                 </div>
 
-                <div id="business" class="card-body p-0 tab-pane fade show active" role="tabpanel">
-
+                <div id="business" class="card-body p-0 tab-pane fade" role="tabpanel">
+                    @include('layout.empty',['count'=>$business->count()])
                 </div>
 
-                <div id="settings" class="card-body p-0 tab-pane fade show active" role="tabpanel">
+                <div id="settings" class="card-body p-0 tab-pane fade" role="tabpanel">
 
                 </div>
-
             </div>
-
         </div>
     </div>
 </div>

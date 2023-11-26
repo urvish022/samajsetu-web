@@ -41,18 +41,41 @@
                 <!--begin::Card header-->
 
                 <div id="kt_account_settings_profile_details" class="collapse show">
-                    
+
                     <div class="card-body border-top p-9">
-                        <form id="kt_account_profile_details_form" class="form">
-                        
+                        <div class="alert alert-dismissible bg-danger d-flex flex-column flex-sm-row p-5 mb-10" style="display: none!important;" id="toast_area">
+                            <!--begin::Icon-->
+                            <i class="ki-duotone ki-information fs-2hx text-light me-4 mb-5 mb-sm-0"><span class="path1"></span><span class="path2"></span><span class="path3"></span></i>
+                            <!--end::Icon-->
+
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-column text-light pe-0 pe-sm-10">
+                                <!--begin::Title-->
+                                <!--end::Title-->
+
+                                <!--begin::Content-->
+                                <span class="toast_message"></span>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+
+                            <!--begin::Close-->
+                            <button type="button" class="position-absolute position-sm-relative m-2 m-sm-0 top-0 end-0 btn btn-icon ms-sm-auto" data-bs-dismiss="alert">
+                                <i class="ki-duotone ki-cross fs-1 text-light"><span class="path1"></span><span class="path2"></span></i>
+                            </button>
+                            <!--end::Close-->
+                        </div>
+
+                        <form id="matrimony_form" class="form" novalidate="novalidate">
+
+                            <input type="hidden" id="crop_photo" name="crop_photo">
                             <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label fw-semibold fs-6">Photo</label>
+                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
+                                    <span class="required">Photo</span></label>
 
                                 <div class="col-lg-8">
                                     <div class="symbol symbol-100px bg-">
-                                        <input type="file" id="upload_image">
-                                        <div id="uploaded_image"></div>
-                                        <button id="crop_image">Crop & Upload Image</button>
+                                        <input type="file" id="fileInput" name="photo" accept=".png, .jpg, .jpeg">
                                     </div>
                                 </div>
                             </div>
@@ -65,7 +88,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="full_name_eng" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter full name"/>
+                                            <input name="full_name_eng" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter full name" />
                                         </div>
                                     </div>
                                 </div>
@@ -101,9 +124,9 @@
                                 <div class="col-lg-8 fv-row">
                                     <select name="village_id" aria-label="Select a Village" data-control="select2" data-placeholder="Select a village" class="form-select form-select form-select-lg fw-semibold">
                                         <option value="">Select a Village...</option>
-                                    @foreach ($villages as $village)
+                                        @foreach ($villages as $village)
                                         <option value="{{$village->village_id}}">{{$village->eng_name}}</option>
-                                    @endforeach
+                                        @endforeach
                                     </select>
                                 </div>
                             </div>
@@ -116,7 +139,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="education" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your education"/>
+                                            <input name="education" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your education" />
                                         </div>
                                     </div>
                                 </div>
@@ -144,7 +167,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="income" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your annual income"/>
+                                            <input name="income" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your annual income" />
                                         </div>
                                     </div>
                                 </div>
@@ -158,7 +181,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="father_mobile" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your father mobile number"/>
+                                            <input name="father_mobile" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your father mobile number" />
                                         </div>
                                     </div>
                                 </div>
@@ -172,7 +195,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mobile_no" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mobile number"/>
+                                            <input name="mobile_no" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mobile number" />
                                         </div>
                                     </div>
                                 </div>
@@ -186,7 +209,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your sakh"/>
+                                            <input name="sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your sakh" />
                                         </div>
                                     </div>
                                 </div>
@@ -200,7 +223,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mosad_sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mosad sakh"/>
+                                            <input name="mosad_sakh" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your mosad sakh" />
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +237,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="height" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your height"/>
+                                            <input name="height" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your height" />
                                         </div>
                                     </div>
                                 </div>
@@ -228,7 +251,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="weight" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your weight"/>
+                                            <input name="weight" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your weight" />
                                         </div>
                                     </div>
                                 </div>
@@ -260,7 +283,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="land" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter Land"/>
+                                            <input name="land" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter Land" />
                                         </div>
                                     </div>
                                 </div>
@@ -274,7 +297,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="father_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter father occupation"/>
+                                            <input name="father_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter father occupation" />
                                         </div>
                                     </div>
                                 </div>
@@ -288,21 +311,21 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="mother_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter mother occupation"/>
+                                            <input name="mother_occupation" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter mother occupation" />
                                         </div>
                                     </div>
                                 </div>
                             </div>
 
                             <div class="row mb-6">
-                                <label class="col-lg-4 col-form-label  fw-semibold fs-6"><span class="required">
+                                <label class="col-lg-4 col-form-label fw-semibold fs-6">
                                     <span class="required">Brother</span>
                                 </label>
 
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="brother" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many brother?"/>
+                                            <input name="brother" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many brother?" />
                                         </div>
                                     </div>
                                 </div>
@@ -316,7 +339,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="sister" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many sister?"/>
+                                            <input name="sister" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="How many sister?" />
                                         </div>
                                     </div>
                                 </div>
@@ -330,7 +353,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input name="address" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your home address"/>
+                                            <input name="address" type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" placeholder="Enter your home address" />
                                         </div>
                                     </div>
                                 </div>
@@ -344,7 +367,7 @@
                                 <div class="col-lg-8">
                                     <div class="row">
                                         <div class="col-lg-12 fv-row">
-                                            <input type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" name="extra_details" placeholder="Enter extra details"/>
+                                            <input type="text" class="form-control form-control-lg form-control mb-3 mb-lg-0" name="extra_details" placeholder="Enter extra details" />
                                         </div>
                                     </div>
                                 </div>
@@ -352,9 +375,9 @@
 
                             <div class="card-footer d-flex justify-content-end py-6 px-9">
                                 <button type="reset" class="btn btn-light btn-active-light-primary me-2">Cancel</button>
-                                <button type="submit" class="btn btn-primary">Save</button>
+                                <button type="button" id="save_btn" class="btn btn-primary">Save</button>
                             </div>
-                            
+
                         </form>
                     </div>
 
@@ -364,63 +387,104 @@
     </div>
 
 </div>
+
+<div class="modal" id="cropie_modal" data-controls-modal="cropie_modal" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <div class="modal-content rounded">
+            <!--begin::Modal Header-->
+            <div class="modal-header">
+                <h5 class="modal-title">Crop Photo</h5>
+            </div>
+            <!--end::Modal Header-->
+            <div class="modal-body scroll-y px-10 px-lg-15 pt-0 pb-15">
+                <div id="demo"></div>
+            </div>
+            <button type="button" class="btn btn-primary" id="crop">Save</button>
+        </div>
+    </div>
+</div>
 @endpush
-
 @push('script')
+{!! JsValidator::formRequest('App\Http\Requests\StoreMatrimonyData','#matrimony_form') !!}
 <script>
-$(document).ready(function() {
-    var croppie_instance = $('#uploaded_image').croppie({
-        viewport: {
-            width: 200,
-            height: 200,
-            type: 'square' // square shape will ensure 1:1 aspect ratio
-        },
-        boundary: {
-            width: 300,
-            height: 300
-        }
-    });
+    var cropImage = '';
+    $(function() {
+        var $uploadCrop = $('#demo').croppie({
+            enableExif: true,
+            viewport: {
+                width: 300,
+                height: 300,
+                type: 'square'
+            },
+            boundary: {
+                width: 400,
+                height: 400
+            }
+        });
 
-    $('#uploaded_image').change(function() {
-        var reader = new FileReader();
+        $('#crop').on('click', function(ev) {
 
-        reader.onload = function(event) {
-            croppie_instance.croppie('bind', {
-                url: event.target.result
-            }).then(function() {
-                console.log('Image successfully loaded.');
+            $uploadCrop.croppie('result', {
+                type: 'base64',
+                size: 'original',
+                format: 'png'
+            }).then(function(resp) {
+                $("#crop_photo").val(resp);
             });
+
+            $('#cropie_modal').modal('hide');
+        });
+
+
+        function readFile(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $uploadCrop.croppie('bind', {
+                        url: e.target.result
+                    });
+                }
+                reader.readAsDataURL(input.files[0]);
+            }
         }
 
-        reader.readAsDataURL(this.files[0]);
+        $('#fileInput').on('change', function() {
+
+            readFile(this);
+
+            $('#cropie_modal').modal('show');
+
+        });
+
     });
-
-    $('#crop_image').click(function(event) {
-       croppie_instance.croppie('result', {
-           type: 'canvas',
-           size: 'viewport'
-       }).then(function(response) {
-           $.ajax({
-               url: "/path/to/your/laravel/route",
-               type: "POST",
-               data: {"image": response},
-               success: function(data) {
-                   // handle success
-               },
-               error: function(data) {
-                   // handle error
-               }
-           });
-       });
-   });
-
-});
-
 
     $(document).ready(function() {
-        // $("#kt_datepicker_1").flatpickr();
+        $('#cropie_modal').modal({
+            backdrop: 'static',
+            keyboard: false
+        })
+    });
 
-        
+    $("#save_btn").click(function() {
+        if ($("#matrimony_form").valid()) {
+            var formData = new FormData($("#register_form")[0]);
+            $.ajax({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                },
+                url: '/register-ajax',
+                type: 'POST',
+                data: formData,
+                processData: false, // Important!
+                contentType: false, // Important!
+                success: function(response) {},
+                error: function(error) {
+                    $("#toast_area").show();
+                    $("#toast_area").addClass('bg-danger');
+                    $(".toast_message").text("Something went wrong!");
+                }
+            });
+        }
     });
 </script>
 @endpush

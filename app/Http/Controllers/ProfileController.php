@@ -19,13 +19,12 @@ class ProfileController extends Controller
     public function index()
     {
         $title = __('dashboard.title');
-        $member_id = auth()->user()->id;
+        $member_id = auth()->user()->member_id;
         
         $member = MemberDetail::find($member_id);
         $details = FamilyDetail::with(['relation','village'])->where('approval_flag',1)->where('fd_active_flag',1)->where('member_id',$member_id)->orderBy('fbirth_date','ASC')->get();
 
         $matrimony = MatrimonyDetail::where('member_id',$member_id)->where('met_active_flag',1)->get();
-        
         $memorial = MemorialDetail::where('member_id',$member_id)->where('mem_active_flag',1)->get();
         $business = BusinessDirectory::where('member_id',$member_id)->where('bd_active_flag',1)->get();
 

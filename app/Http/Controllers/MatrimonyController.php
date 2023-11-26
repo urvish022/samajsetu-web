@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\MatrimonyRequest;
 use App\Http\Requests\StoreMatrimonyData;
 use App\Models\MatrimonyDetail;
 use App\Models\VillageSetting;
@@ -47,7 +48,7 @@ class MatrimonyController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreMatrimonyData $request)
+    public function store(MatrimonyRequest $request)
     {
         //
     }

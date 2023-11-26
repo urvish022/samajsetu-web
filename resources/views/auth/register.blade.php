@@ -14,10 +14,7 @@
 	<!--begin::Global Stylesheets Bundle(mandatory for all pages)-->
 	<link href="assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
 	<link href="assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
-	<!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css"> -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.css" />
-
-
 
 	<!--end::Global Stylesheets Bundle-->
 	<style type="text/css">
@@ -168,9 +165,7 @@
 								<input type="text" placeholder="Enter Your Home Address" name="address" autocomplete="off" class="form-control bg-transparent" />
 							</div>
 							<div class="fv-row mb-3">
-								
 								<input type="file" id="fileInput" name="photo" accept=".png, .jpg, .jpeg" />
-
 							</div>
 							<a href="#" id="hiddenModalTrigger" style="display: none;" data-bs-toggle="modal" data-bs-target="#cropie_modal"></a>
 							<!--end::Input group=-->
@@ -223,7 +218,6 @@
 	<script src="assets/plugins/global/plugins.bundle.js"></script>
 	<script src="assets/js/scripts.bundle.js"></script>
 	<script type="text/javascript" src="{{ asset('vendor/jsvalidation/js/jsvalidation.js')}}"></script>
-	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script> -->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/croppie/2.6.5/croppie.min.js"></script>
 	{!! JsValidator::formRequest('App\Http\Requests\RegisterRequest','#register_form') !!}
 	<script type="text/javascript">
@@ -266,10 +260,8 @@
 
 			$('#fileInput').on('change', function () { 
 				
-				// $("#cropie_div").show();
 				readFile(this);
 
-				// $('#cropie_modal').modal('toggle');
 				$('#cropie_modal').modal('show');
 
 			});
@@ -282,7 +274,6 @@
 				keyboard: false
 			})
 		});
-
 		
 		$("#register_btn").click(function() {
 			if ($("#register_form").valid()) {
