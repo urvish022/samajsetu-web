@@ -26,7 +26,7 @@ class SendMemberEmailJob implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(MemberDetail $memberDetail)
+    public function __construct($memberDetail)
     {
         $this->memberDetail = $memberDetail;
     }
