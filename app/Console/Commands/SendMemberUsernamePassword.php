@@ -40,7 +40,13 @@ class SendMemberUsernamePassword extends Command
      */
     public function handle()
     {
-        $memberDetails = MemberDetail::where('approval_flag',1)->where('mem_active_flag',1)->get();
+        $memberDetails = MemberDetail::where('approval_flag',1)
+        ->where('mem_active_flag',1)
+        ->where('member_id','>=',1)
+        ->where('member_id','<=',2323)
+        ->orderBy('member_id','ASC')
+        ->get();
+
         foreach ($memberDetails as $memberDetail) {
             // Dispatch the email job to the database queue connection
             dispatch((new SendMemberEmailJob($memberDetail))->onConnection('database'));
