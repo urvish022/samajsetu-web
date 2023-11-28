@@ -32,7 +32,7 @@ class RegisterRequest extends FormRequest
             'blood_grp' => 'nullable',
             'mobile_no' => 'required|numeric',
             'email_id' => 'required',
-            'photo' => 'required',
+            'photo' => 'required|mimes:jpg,jpeg,png|max:4096',
             'address' => 'required',
             'crop_photo' => 'required'
         ];
@@ -52,7 +52,8 @@ class RegisterRequest extends FormRequest
             'address.required' => 'Please enter your home address',
             'crop_photo.required' => 'Please crop your profile photo',
             'mobile_no.numeric' => 'Mobile number should be numeric',
-            
+            'photo.max' => 'You can upload photo within 4 MB size.',
+            'photo.mimes' => 'Supported types only are jpg, jpeg, png'
         ];
     }
 }

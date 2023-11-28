@@ -2,12 +2,9 @@
 
 namespace App\Jobs;
 
-use App\Mail\SendLoginInfoMail;
-use App\Models\MemberDetail;
 use App\Traits\UtilTrait;
 use Exception;
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;

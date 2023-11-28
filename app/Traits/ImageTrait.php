@@ -6,6 +6,7 @@ use CURLFile;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
+use Intervention\Image\ImageManagerStatic as Image;
 
 trait ImageTrait {
 
@@ -64,10 +65,12 @@ trait ImageTrait {
         list(, $data) = explode(',', $data);
         $imageData = base64_decode($data);
 
+        $compressedImage = Image::make($imageData)->encode('png',20)->stream();
+
         // Save the image locally (you may want to generate a unique filename)
         $fileName = time().'.png';
         $file = $appPath."/".$fileName;
-        Storage::disk('public')->put($file, $imageData);
+        Storage::disk('public')->put($file, $compressedImage);
 
         return $fileName;
     }

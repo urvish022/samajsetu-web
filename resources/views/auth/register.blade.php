@@ -238,7 +238,7 @@
 
 			$('#crop').on('click', function (ev) {
 				
-				$uploadCrop.croppie('result', {type: 'base64', size: 'original', format: 'png'}).then(function(resp) {
+				$uploadCrop.croppie('result', {type: 'base64', size: {width:500,height:500}, quality: 0.5, format: 'png'}).then(function(resp) {
 					$("#crop_photo").val(resp);
 				});
 
